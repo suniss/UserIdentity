@@ -1,7 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@User
+@if(User.Identity.IsAuthenticated)
+            {
+                <span>Authenticated</span>
+            }
+            else
+            {
+                <span>Not Authenticated</span>
+            }
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>

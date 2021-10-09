@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using UserIdentity.Models;
+using UserIdentity.ViewModels;
 
 namespace UserIdentity.Controllers
 {
@@ -24,10 +25,19 @@ namespace UserIdentity.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult About()
         {
-            return View();
+            var VM = new MyViewModel();
+            VM.IsAdmin = false;
+            return View(VM);
+        }
+        [Authorize(Roles ="Admin")]
+        public IActionResult Contact()
+        {
+            var VM = new MyViewModel();
+            VM.IsAdmin = true;
+            return View(VM);
         }
 
         public IActionResult Privacy()

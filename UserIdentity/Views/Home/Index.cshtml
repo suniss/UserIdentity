@@ -5,9 +5,16 @@
 @if(User.Identity.IsAuthenticated)
             {
                 <span>Authenticated</span>
-            }
-            else
-            {
+    if(User.IsInRole("Admin"))
+                {
+                    <span>User is Admin</span>
+    }else
+                {
+                    <span>User is not Admin</span>
+                }
+}
+else
+{
                 <span>Not Authenticated</span>
             }
 <div class="text-center">

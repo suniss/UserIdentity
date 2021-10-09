@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,18 @@ namespace UserIdentity.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
+        [Authorize(Roles = "Adminstrators,Manager")]
         public IActionResult Index()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult About()
         {
             return View();
         }
